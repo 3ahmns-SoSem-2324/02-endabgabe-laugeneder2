@@ -106,3 +106,18 @@ Um Makey Makey zu verwenden, muss man die Klemmen an den entsprechenden Flächen
             Untere Pfeiltaste für "nicht teilbar"
 
 Mit diesen dieser Beschreibung sollte dass Makey Makey nun funktionieren.
+
+
+Fehlerbehebung
+Häufige Probleme
+
+
+Keine Audioausgabe:
+
+Ich habe versucht, das Problem zu beheben, indem ich verschiedene Ansätze ausprobierte. Zuerst habe ich überprüft, ob die AudioSource-Komponente richtig eingerichtet ist und die korrekten AudioClips zugewiesen sind. Dann habe ich sichergestellt, dass die Lautstärke nicht auf null gesetzt ist. Schließlich habe ich auch das Skript durchsucht, um mögliche Fehler zu finden. Nachdem ich die AudioSource-Komponente im Unity-Editor neu hinzugefügt und die AudioClips neu verknüpft hatte, funktionierte die Audioausgabe wieder.
+
+Spiel reagiert nicht auf Eingaben:
+    
+Ich habe überprüft, ob die Variable canInput korrekt gesetzt ist. Danach habe ich die Tastenzuordnungen im Skript durchgesehen, um sicherzustellen, dass sie richtig implementiert sind. 
+
+
