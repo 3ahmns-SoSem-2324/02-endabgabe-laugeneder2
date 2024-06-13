@@ -40,7 +40,9 @@ UML Diagramm
 mermaid
 
 classDiagram
+
     note "Attributes and Methods of FizzBuzzController"
+    
     class FizzBuzzController {
         - int randomNumber
         - int score
@@ -49,6 +51,7 @@ classDiagram
         - AudioClip rightSoundClip
         - AudioClip wrongSoundClip
         - AudioSource audioSource
+        
         + void Start()
         + void GenerateRandomNumber()
         + void UpdateUI()
