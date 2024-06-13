@@ -1,7 +1,7 @@
 FizzBuzzController - README
 Einführung und Spielbeschreibung
 
-FizzBuzz ist ein Lernspiel, das dazu dient, das Verständnis von Teilbarkeit und logischem Denken zu fördern. Das Spiel zeigt eine zufällige Zahl zwischen 1 und 1000 an und der Spieler muss entscheiden, ob die Zahl durch 3, 5 oder beide teilbar ist. Die möglichen Antworten sind:
+FizzBuzz ist ein Lernspiel, das dazu dient, das Verständnis von Teilbarkeit und logischem Denken zu fördern. Das Spiel zeigt eine zufällige Zahl zwischen 1 und 1000 an und der Spieler muss entscheiden, ob die Zahl durch 3, 5, beide teilbar oder durch keine Zahl teilbar ist. Die möglichen Antworten sind:
 
     "Fizz" (wenn die Zahl durch 3 teilbar ist)
     "Buzz" (wenn die Zahl durch 5 teilbar ist)
@@ -32,6 +32,7 @@ Schritte zum Spielen:
 
     Nächste Runde:
         Nach einer kurzen Verzögerung wird eine neue zufällige Zahl generiert und das Spiel setzt sich fort.
+        
 
 Code-Dokumentation
 UML Diagramm
@@ -61,19 +62,31 @@ classDiagram
         + IEnumerator GenerateNewNumberAfterDelay()
     }
 
+
 Anmerkungen zum Code
 
     Start(): Initialisiert das Spiel, indem es eine neue Zufallszahl generiert und die Benutzeroberfläche aktualisiert.
+    
     GenerateRandomNumber(): Generiert eine zufällige Zahl zwischen 1 und 1000.
+    
     UpdateUI(): Aktualisiert die Anzeige der Zufallszahl und gibt an, ob die Zahl durch 3 oder 5 teilbar ist.
+    
     UpdateUserInputText(string input): Aktualisiert den Benutzereingabetext.
+    
     CheckUserInput(): Überprüft die Eingabe des Benutzers und gibt entsprechendes Feedback.
+    
     PlaySound(AudioClip clip): Spielt den angegebenen Audioclip ab.
+    
     ChangePanelColorAfterDelay(Color color): Ändert die Farbe des Panels nach einer kurzen Verzögerung.
+    
     UpdateScoreText(): Aktualisiert die Punktzahl-Anzeige.
+    
     GenerateNewRandomNumber(): Generiert eine neue Zufallszahl und setzt das Spiel zurück.
+    
     Update(): Überprüft die Benutzereingaben und führt die entsprechende Aktion aus.
+    
     GenerateNewNumberAfterDelay(): Generiert nach einer kurzen Verzögerung eine neue Zufallszahl.
+    
 
 Szene zum Starten
 
@@ -89,4 +102,4 @@ Um Makey Makey zu verwenden, muss man die Klemmen an den entsprechenden Flächen
             Obere Pfeiltaste für "FizzBuzz"
             Untere Pfeiltaste für "nicht teilbar"
 
-Mit diesen Anweisungen und der detaillierten Beschreibung der Skriptfunktionen sollte es leicht sein, das FizzBuzz-Spiel korrekt in Unity zu implementieren und zu nutzen.
+Mit diesen dieser Beschreibung sollte dass Makey Makey nun funktionieren.
