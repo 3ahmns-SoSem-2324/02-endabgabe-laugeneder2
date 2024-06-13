@@ -41,17 +41,24 @@ mermaid
 
 classDiagram
 
-    note "Attributes and Methods of FizzBuzzController"
+    note "Attributes and Methods of FizzBuzzController and Scene Transitions"
+    class FizzBuzzController
     
-    class FizzBuzzController {
+    {
+        + TextMeshProUGUI RandomNumberText
+        + TextMeshProUGUI UserInputText
+        + TextMeshProUGUI FeedbackText
+        + TextMeshProUGUI ScoreText
+        + TextMeshProUGUI DivisibleBy3Text
+        + TextMeshProUGUI DivisibleBy5Text
+        + Image panel
+        + AudioClip rightSoundClip
+        + AudioClip wrongSoundClip
+        - AudioSource audioSource
         - int randomNumber
         - int score
         - string userInput
         - bool canInput
-        - AudioClip rightSoundClip
-        - AudioClip wrongSoundClip
-        - AudioSource audioSource
-        
         + void Start()
         + void GenerateRandomNumber()
         + void UpdateUI()
@@ -65,6 +72,13 @@ classDiagram
         + IEnumerator GenerateNewNumberAfterDelay()
     }
 
+
+    FizzBuzzController --> "initialisiert bei Spielstart" Scene : StartScene
+    Scene --> "zeigt neue zufällige Zahl" GameScene : NewRandomNumber
+    GameScene --> "akzeptiert Benutzereingaben" GameScene : UserInput
+    GameScene --> "aktualisiert UI und Punktzahl" GameScene : UpdateUI
+    GameScene --> "prüft Antwort und gibt Feedback" GameScene : CheckUserInput
+    
 
 Anmerkungen zum Code
 
