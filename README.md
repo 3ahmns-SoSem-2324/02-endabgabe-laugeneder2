@@ -1,7 +1,9 @@
 FizzBuzzController - README
+
+
 Einführung und Spielbeschreibung
 
-FizzBuzz ist ein Lernspiel, das dazu dient, das Verständnis von Teilbarkeit und logischem Denken zu fördern. Das Spiel zeigt eine zufällige Zahl zwischen 1 und 1000 an und der Spieler muss entscheiden, ob die Zahl durch 3, 5, beide teilbar oder durch keine Zahl teilbar ist. Die möglichen Antworten sind:
+FizzBuzz ist ein Lernspiel, das das Verständnis von Teilbarkeit und logischem Denken fördert. Das Spiel zeigt eine zufällige Zahl zwischen 1 und 1000 an und der Spieler muss entscheiden, ob die Zahl durch 3, 5, beide teilbar oder durch keine Zahl teilbar ist. Die möglichen Antworten sind:
 
     "Fizz" (wenn die Zahl durch 3 teilbar ist)
     "Buzz" (wenn die Zahl durch 5 teilbar ist)
@@ -9,7 +11,10 @@ FizzBuzz ist ein Lernspiel, das dazu dient, das Verständnis von Teilbarkeit und
     "nicht teilbar" (wenn die Zahl weder durch 3 noch durch 5 teilbar ist)
 
 Das Ziel des Spiels ist es, so viele richtige Antworten wie möglich zu geben und dabei eine hohe Punktzahl zu erreichen.
+
+
 Spielanleitung
+
 Schritte zum Spielen:
 
     Start des Spiels:
@@ -32,106 +37,144 @@ Schritte zum Spielen:
 
     Nächste Runde:
         Nach einer kurzen Verzögerung wird eine neue zufällige Zahl generiert und das Spiel setzt sich fort.
+
         
 
 Code-Dokumentation
 UML Diagramm
 
-mermaid
 
-classDiagram
++---------------------------------------------------+
+|   CountdownController                             |
+|---------------------------------------------------|
+| + countdownText                                   |
+| - countdownTime                                   |
+|---------------------------------------------------|
+| + Start()                                         |
+| + StartCountdown()                                |
+| + IEnumerator StartCountdown()                    |
+|---------------------------------------------------|
+| + SceneManager.LoadScene()                        |
++---------------------------------------------------+
+         |
+         v
++---------------------------------------------------+
+|    FizzBuzzController                             |
+|---------------------------------------------------|
+| + RandomNumberText                                |
+| + UserInputText                                   |
+| + FeedbackText                                    |
+| + ScoreText                                       |
+| + DivisibleBy3Text                                |
+| + DivisibleBy5Text                                |
+| + panel                                           |
+| + rightSoundClip                                  |
+| + wrongSoundClip                                  |
+|---------------------------------------------------|
+| + Start()                                         |
+| + GenerateRandomNumber()                          |
+| + UpdateUI()                                      |
+| + UpdateUserInputText()                           |
+| + CheckUserInput()                                |
+| + PlaySound()                                     |
+| + IEnumerator ChangePanelColorAfterDelay()        |
+| + UpdateScoreText()                               |
+| + GenerateNewRandomNumber()                       |
+| + Update()                                        |
+| + IEnumerator GenerateNewNumberAfterDelay()       |
++---------------------------------------------------+
 
-    note "Attributes and Methods of FizzBuzzController and Scene Transitions"
-    class FizzBuzzController
-    
-    {
-        + TextMeshProUGUI RandomNumberText
-        + TextMeshProUGUI UserInputText
-        + TextMeshProUGUI FeedbackText
-        + TextMeshProUGUI ScoreText
-        + TextMeshProUGUI DivisibleBy3Text
-        + TextMeshProUGUI DivisibleBy5Text
-        + Image panel
-        + AudioClip rightSoundClip
-        + AudioClip wrongSoundClip
-        - AudioSource audioSource
-        - int randomNumber
-        - int score
-        - string userInput
-        - bool canInput
-        + void Start()
-        + void GenerateRandomNumber()
-        + void UpdateUI()
-        + void UpdateUserInputText(string input)
-        + void CheckUserInput()
-        + void PlaySound(AudioClip clip)
-        + IEnumerator ChangePanelColorAfterDelay(Color color)
-        + void UpdateScoreText()
-        + void GenerateNewRandomNumber()
-        + void Update()
-        + IEnumerator GenerateNewNumberAfterDelay()
-    }
+    CountdownController --> FizzBuzzController : "lädt nach Countdown"
+    CountdownController --> "initialisiert Timer" : StartScene
+    FizzBuzzController --> "steuert Spiel" : FizzBuzzMainScene
 
-
-    FizzBuzzController --> "initialisiert bei Spielstart" Scene : StartScene
-    Scene --> "zeigt neue zufällige Zahl" GameScene : NewRandomNumber
-    GameScene --> "akzeptiert Benutzereingaben" GameScene : UserInput
-    GameScene --> "aktualisiert UI und Punktzahl" GameScene : UpdateUI
-    GameScene --> "prüft Antwort und gibt Feedback" GameScene : CheckUserInput
+    (Ich konnte den Mermaid live Editor nicht öffnen, das UML-Diagramm habe ich mit der Hilfe von Chat GPD erstellt, ich hoffe das macht nicht allzu viel aus.)
     
 
 Anmerkungen zum Code
 
-    Start(): Initialisiert das Spiel, indem es eine neue Zufallszahl generiert und die Benutzeroberfläche aktualisiert.
+CountdownController
+
+    Attribute:
+        countdownText: TextMeshProUGUI-Element, um den Countdown anzuzeigen.
+        
+        countdownTime: Zeit für den Countdown (20 Sekunden).
+
+    Methoden:
+        Start(): Initialisiert den Countdown.
+        
+        StartCountdown(): Coroutine, die den Countdown ausführt und die FizzBuzzMainScene lädt, wenn der Countdown abgelaufen ist.
+        
+        LoadFizzBuzzMainScene(): Lädt die Hauptspielszene.
+        
+
+FizzBuzzController
+
+    Attribute:
     
-    GenerateRandomNumber(): Generiert eine zufällige Zahl zwischen 1 und 1000.
+        RandomNumberText, UserInputText, FeedbackText, ScoreText, DivisibleBy3Text, DivisibleBy5Text: TextMeshProUGUI-Elemente zur Anzeige von Informationen.
+        
+        panel: Image-Element zur Anzeige von Feedback.
+        
+        rightSoundClip, wrongSoundClip: AudioClips für Soundeffekte.
+        
+        audioSource: AudioSource-Komponente zur Wiedergabe der AudioClips.
+        
+        randomNumber, score, userInput, canInput: Spielzustandsvariablen.
+
+    Methoden:
     
-    UpdateUI(): Aktualisiert die Anzeige der Zufallszahl und gibt an, ob die Zahl durch 3 oder 5 teilbar ist.
-    
-    UpdateUserInputText(string input): Aktualisiert den Benutzereingabetext.
-    
-    CheckUserInput(): Überprüft die Eingabe des Benutzers und gibt entsprechendes Feedback.
-    
-    PlaySound(AudioClip clip): Spielt den angegebenen Audioclip ab.
-    
-    ChangePanelColorAfterDelay(Color color): Ändert die Farbe des Panels nach einer kurzen Verzögerung.
-    
-    UpdateScoreText(): Aktualisiert die Punktzahl-Anzeige.
-    
-    GenerateNewRandomNumber(): Generiert eine neue Zufallszahl und setzt das Spiel zurück.
-    
-    Update(): Überprüft die Benutzereingaben und führt die entsprechende Aktion aus.
-    
-    GenerateNewNumberAfterDelay(): Generiert nach einer kurzen Verzögerung eine neue Zufallszahl.
-    
+        Start(): Initialisiert das Spiel, indem es eine neue Zufallszahl generiert und die Benutzeroberfläche aktualisiert.
+        
+        GenerateRandomNumber(): Generiert eine zufällige Zahl zwischen 1 und 1000.
+        
+        UpdateUI(): Aktualisiert die Anzeige der Zufallszahl und gibt an, ob die Zahl durch 3 oder 5 teilbar ist.
+        
+        UpdateUserInputText(string input): Aktualisiert den Benutzereingabetext.
+        
+        CheckUserInput(): Überprüft die Eingabe des Benutzers und gibt entsprechendes Feedback.
+        
+        PlaySound(AudioClip clip): Spielt den angegebenen Audioclip ab.
+        
+        ChangePanelColorAfterDelay(Color color, AudioClip clip): Ändert die Farbe des Panels nach einer kurzen Verzögerung und spielt einen Sound ab.
+        
+        UpdateScoreText(): Aktualisiert die Punktzahl-Anzeige.
+        
+        GenerateNewRandomNumber(): Generiert eine neue Zufallszahl und setzt das Spiel zurück.
+        
+        Update(): Überprüft die Benutzereingaben und führt die entsprechende Aktion aus.
+        
+        GenerateNewNumberAfterDelay(): Generiert nach einer kurzen Verzögerung eine neue Zufallszahl.
+        
 
 Szene zum Starten
 
-Man muss sicherstellen, dass die Szene, die den FizzBuzzController enthält, als Startszene in den Build-Einstellungen von Unity ausgewählt ist.
+Man muss sicherstellen, dass die SampleScene, die den CountdownController enthält, als Startszene in den Build-Einstellungen von Unity ausgewählt ist.
 
 
 Nutzung von Makey Makey
 
 Um Makey Makey zu verwenden, muss man die Klemmen an den entsprechenden Flächen für die einzelnen Tasten anbringen:
 
-            Linke Pfeiltaste für "Fizz"
-            Rechte Pfeiltaste für "Buzz"
-            Obere Pfeiltaste für "FizzBuzz"
-            Untere Pfeiltaste für "nicht teilbar"
+    Linke Pfeiltaste für "Fizz"
+    Rechte Pfeiltaste für "Buzz"
+    Obere Pfeiltaste für "FizzBuzz"
+    Untere Pfeiltaste für "nicht teilbar"
 
-Mit diesen dieser Beschreibung sollte dass Makey Makey nun funktionieren.
+    Das Graue Kabel dass unten als Erdung angebracht ist nimmt man in die hand, wenn man nun z.B. das Kabel in die andere Hand nimmt das an der Fläche für fizz angebracht ist sollte im Spiel der Befehl Fizz ausgeführt werden.
+
+Mit dieser Beschreibung sollte das Makey Makey nun funktionieren.
 
 
 Fehlerbehebung
+
 Häufige Probleme
+1. Keine Audioausgabe
 
+Ich habe versucht, das Problem zu beheben, indem ich verschiedene Ansätze ausprobierte. Zuerst habe ich überprüft, ob die AudioSource-Komponente richtig eingerichtet ist und die korrekten AudioClips zugewiesen sind. Dann habe ich sichergestellt, dass die Lautstärke nicht auf null gesetzt ist. Ich habe auch im Script nachgesehen ob dort fehler vorhanden sind. Nachdem ich die AudioSource-Komponente im Unity-Editor neu hinzugefügt und die AudioClips neu verknüpft hatte, funktionierte die Audioausgabe wieder.
 
-Keine Audioausgabe:
+2. Spiel reagiert nicht auf Eingaben
 
-Ich habe versucht, das Problem zu beheben, indem ich verschiedene Ansätze ausprobierte. Zuerst habe ich überprüft, ob die AudioSource-Komponente richtig eingerichtet ist und die korrekten AudioClips zugewiesen sind. Dann habe ich sichergestellt, dass die Lautstärke nicht auf null gesetzt ist. Schließlich habe ich auch das Skript durchsucht, um mögliche Fehler zu finden. Nachdem ich die AudioSource-Komponente im Unity-Editor neu hinzugefügt und die AudioClips neu verknüpft hatte, funktionierte die Audioausgabe wieder.
-
-Spiel reagiert nicht auf Eingaben:
-    
-Ich habe überprüft, ob die Variable canInput korrekt gesetzt ist. Danach habe ich die Tastenzuordnungen im Skript durchgesehen, um sicherzustellen, dass sie richtig implementiert sind. 
+Ich habe überprüft, ob die Variable canInput korrekt gesetzt ist. Danach habe ich die Tastenzuordnungen im Skript durchgesehen, um sicherzustellen, dass sie richtig implementiert sind.
 
 
