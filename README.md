@@ -88,7 +88,7 @@ UML Diagramm
     CountdownController --> "initialisiert Timer" : StartScene
     FizzBuzzController --> "steuert Spiel" : FizzBuzzMainScene
 
-    (Ich konnte den Mermaid live Editor nicht öffnen, das UML-Diagramm habe ich mit der Hilfe von Chat GPD erstellt, ich hoffe das macht nicht allzu viel aus.)
+    (Ich konnte den Mermaid live Editor nicht öffnen, das UML-Diagramm sieht daher nicht sehr gut aus, ich hoffe das macht nicht allzu viel aus.)
     
 
 Anmerkungen zum Code
