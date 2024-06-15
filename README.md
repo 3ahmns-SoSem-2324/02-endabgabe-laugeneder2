@@ -171,7 +171,7 @@ Fehlerbehebung
 Häufige Probleme
 1. Keine Audioausgabe
 
-Ich habe versucht, das Problem zu beheben, indem ich verschiedene Ansätze ausprobierte. Zuerst habe ich überprüft, ob die AudioSource-Komponente richtig eingerichtet ist und die korrekten AudioClips zugewiesen sind. Dann habe ich sichergestellt, dass die Lautstärke nicht auf null gesetzt ist. Ich habe auch im Script nachgesehen ob dort fehler vorhanden sind. Nachdem ich die AudioSource-Komponente im Unity-Editor neu hinzugefügt und die AudioClips neu verknüpft hatte, funktionierte die Audioausgabe wieder.
+Ich habe versucht, das Problem zu beheben, indem ich verschiedene Sachen ausprobierte. Zuerst habe ich überprüft, ob die AudioSource-Komponente auf den richtigen Objekten liegt und die korrekten AudioClips zugewiesen sind. Ich habe auch kontrolliert ob die Lautstärke auf null gesetzt ist und im Script nachgesehen ob dort fehler vorhanden sind. Nachdem ich die AudioSource-Komponente im Unity-Editor neu hinzugefügt und die AudioClips neu zugewiesen habe, funktionierte die Audioausgabe wieder.
 
 2. Spiel reagiert nicht auf Eingaben
 
