@@ -43,73 +43,49 @@ Schritte zum Spielen:
 Code-Dokumentation
 UML Diagramm
 
+```mermaid
+flowchart TD
+    A[Start] --> B[Initialize]
+    B --> C[Generate Random Number]
+    C --> D[Update UI]
+    D --> E[Check Input]
+    E --> F{Correct?}
+    F -->|Yes| G[Update Score]
+    G --> H[Score >= 10?]
+    H -->|Yes| I[Load End Scene]
+    H -->|No| J[Change Panel Color]
+    F -->|No| K[Show Feedback]
+    K --> J
 
-+---------------------------------------------------+
-|                  CountdownController              |
-+---------------------------------------------------+
-| - countdownText : TextMeshProUGUI                 |
-| - countdownTime : float                           |
-+---------------------------------------------------+
-| + Start()                                         |
-| + StartCountdown()                                |
-| + IEnumerator StartCountdown()                    |
-| + SceneManager.LoadScene()                        |
-+---------------------------------------------------+
-
-     |
-     v
-
-+---------------------------------------------------+
-|                   FizzBuzzController              |
-+---------------------------------------------------+
-| - RandomNumberText : TextMeshProUGUI              |
-| - UserInputText : TextMeshProUGUI                 |
-| - FeedbackText : TextMeshProUGUI                  |
-| - ScoreText : TextMeshProUGUI                     |
-| - DivisibleBy3Text : TextMeshProUGUI              |
-| - DivisibleBy5Text : TextMeshProUGUI              |
-| - panel : Image                                   |
-| - rightSoundClip : AudioClip                      |
-| - wrongSoundClip : AudioClip                      |
-| - audioSource : AudioSource                       |
-| - randomNumber : int                              |
-| - score : int                                     |
-| - userInput : string                              |
-| - canInput : bool                                 |
-| - changeColorCoroutine : Coroutine                |
-+---------------------------------------------------+
-| + Start()                                         |
-| + GenerateRandomNumber()                          |
-| + UpdateUI()                                      |
-| + UpdateUserInputText(input : string)             |
-| + CheckUserInput()                                |
-| + PlaySound(clip : AudioClip)                     |
-| + IEnumerator ChangePanelColorAfterDelay(color : Color, clip : AudioClip) |
-| + UpdateScoreText()                               |
-| + GenerateNewRandomNumber()                       |
-| + Update()                                        |
-| + IEnumerator GenerateNewNumberAfterDelay()       |
-+---------------------------------------------------+
-
-         |
-         v
+    style A fill:#77DD77, stroke:#333, stroke-width:2px
+    style B fill:#77DD77, stroke:#333, stroke-width:2px
+    style C fill:#77DD77, stroke:#333, stroke-width:2px
+    style D fill:#77DD77, stroke:#333, stroke-width:2px
+    style E fill:#77DD77, stroke:#333, stroke-width:2px
+    style F fill:#77DD77, stroke:#333, stroke-width:2px
+    style G fill:#77DD77, stroke:#333, stroke-width:2px
+    style H fill:#77DD77, stroke:#333, stroke-width:2px
+    style I fill:#77DD77, stroke:#333, stroke-width:2px
+    style J fill:#77DD77, stroke:#333, stroke-width:2px
+    style K fill:#77DD77, stroke:#333, stroke-width:2px
 
 
-+---------------------------------------------------+
-|                     EndScene                      |
-+---------------------------------------------------+
+```
+``` mermaid
+flowchart TD
+    A[Start] -->|Start Countdown Coroutine| B[Check Countdown Time]
+    B -->|Countdown Time > 0| C[Update Countdown Text]
+    C --> D[Wait for 1 Second]
+    D --> B
+    B -->|Countdown Time <= 0| E[Load FizzBuzzMainSzene]
 
+    style A fill:#77DD77, stroke:#333, stroke-width:2px
+    style B fill:#77DD77, stroke:#333, stroke-width:2px
+    style C fill:#77DD77, stroke:#333, stroke-width:2px
+    style D fill:#77DD77, stroke:#333, stroke-width:2px
+    style E fill:#77DD77, stroke:#333, stroke-width:2px
 
-
-CountdownController --> FizzBuzzController : "lädt nach Countdown"
-CountdownController --> "initialisiert Timer" : StartScene
-FizzBuzzController --> "steuert Spiel" : FizzBuzzMainSceneFizzBuzzController --> EndScene : "wechselt bei 10 Punkten"
-
-
-    
-
-    (Ich konnte den Mermaid live Editor nicht öffnen, das UML-Diagramm sieht daher nicht sehr gut aus, ich hoffe das macht nicht allzu viel aus.)
-    
+```
 
 Anmerkungen zum Code
 
