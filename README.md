@@ -45,48 +45,68 @@ UML Diagramm
 
 
 +---------------------------------------------------+
-|   CountdownController                             |
-|---------------------------------------------------|
-| + countdownText                                   |
-| - countdownTime                                   |
-|---------------------------------------------------|
+|                  CountdownController              |
++---------------------------------------------------+
+| - countdownText : TextMeshProUGUI                 |
+| - countdownTime : float                           |
++---------------------------------------------------+
 | + Start()                                         |
 | + StartCountdown()                                |
 | + IEnumerator StartCountdown()                    |
-|---------------------------------------------------|
 | + SceneManager.LoadScene()                        |
 +---------------------------------------------------+
-         |
-         v
+
+     |
+     v
+
 +---------------------------------------------------+
-|    FizzBuzzController                             |
-|---------------------------------------------------|
-| + RandomNumberText                                |
-| + UserInputText                                   |
-| + FeedbackText                                    |
-| + ScoreText                                       |
-| + DivisibleBy3Text                                |
-| + DivisibleBy5Text                                |
-| + panel                                           |
-| + rightSoundClip                                  |
-| + wrongSoundClip                                  |
-|---------------------------------------------------|
+|                   FizzBuzzController              |
++---------------------------------------------------+
+| - RandomNumberText : TextMeshProUGUI              |
+| - UserInputText : TextMeshProUGUI                 |
+| - FeedbackText : TextMeshProUGUI                  |
+| - ScoreText : TextMeshProUGUI                     |
+| - DivisibleBy3Text : TextMeshProUGUI              |
+| - DivisibleBy5Text : TextMeshProUGUI              |
+| - panel : Image                                   |
+| - rightSoundClip : AudioClip                      |
+| - wrongSoundClip : AudioClip                      |
+| - audioSource : AudioSource                       |
+| - randomNumber : int                              |
+| - score : int                                     |
+| - userInput : string                              |
+| - canInput : bool                                 |
+| - changeColorCoroutine : Coroutine                |
++---------------------------------------------------+
 | + Start()                                         |
 | + GenerateRandomNumber()                          |
 | + UpdateUI()                                      |
-| + UpdateUserInputText()                           |
+| + UpdateUserInputText(input : string)             |
 | + CheckUserInput()                                |
-| + PlaySound()                                     |
-| + IEnumerator ChangePanelColorAfterDelay()        |
+| + PlaySound(clip : AudioClip)                     |
+| + IEnumerator ChangePanelColorAfterDelay(color : Color, clip : AudioClip) |
 | + UpdateScoreText()                               |
 | + GenerateNewRandomNumber()                       |
 | + Update()                                        |
 | + IEnumerator GenerateNewNumberAfterDelay()       |
 +---------------------------------------------------+
 
-    CountdownController --> FizzBuzzController : "lädt nach Countdown"
-    CountdownController --> "initialisiert Timer" : StartScene
-    FizzBuzzController --> "steuert Spiel" : FizzBuzzMainScene
+         |
+         v
+
+
++---------------------------------------------------+
+|                     EndScene                      |
++---------------------------------------------------+
+
+
+
+CountdownController --> FizzBuzzController : "lädt nach Countdown"
+CountdownController --> "initialisiert Timer" : StartScene
+FizzBuzzController --> "steuert Spiel" : FizzBuzzMainSceneFizzBuzzController --> EndScene : "wechselt bei 10 Punkten"
+
+
+    
 
     (Ich konnte den Mermaid live Editor nicht öffnen, das UML-Diagramm sieht daher nicht sehr gut aus, ich hoffe das macht nicht allzu viel aus.)
     
