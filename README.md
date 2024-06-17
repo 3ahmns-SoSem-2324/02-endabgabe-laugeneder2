@@ -13,6 +13,7 @@ FizzBuzz ist ein Lernspiel, das das Verständnis von Teilbarkeit und logischem D
 Das Ziel des Spiels ist es, so viele richtige Antworten wie möglich zu geben und dabei eine hohe Punktzahl zu erreichen.
 
 
+
 Spielanleitung
 
 Schritte zum Spielen:
@@ -25,6 +26,7 @@ Schritte zum Spielen:
 
     Eingabe der Antwort:
         Der Spieler gibt seine Antwort ein, indem er eine der Tasten auf der Tastatur drückt:
+        
             Linke Pfeiltaste für "Fizz"
             Rechte Pfeiltaste für "Buzz"
             Obere Pfeiltaste für "FizzBuzz"
@@ -32,12 +34,12 @@ Schritte zum Spielen:
 
     Überprüfung der Antwort:
         Das Spiel überprüft die Eingabe des Spielers und gibt Feedback:
+        
             Bei richtiger Antwort: Punktzahl wird erhöht und das Panel wechselt für kurze Zeit zu grün. Ein entsprechender Soundclip wird abgespielt.
             Bei falscher Antwort: Die korrekte Antwort wird angezeigt und das Panel wechselt für kurze Zeit zu rot. Ein entsprechender Soundclip wird abgespielt.
 
     Nächste Runde:
         Nach einer kurzen Verzögerung wird eine neue zufällige Zahl generiert und das Spiel setzt sich fort.
-
         
 
 Code-Dokumentation
@@ -86,6 +88,7 @@ flowchart TD
     style E fill:#77DD77, stroke:#333, stroke-width:2px
 
 ```
+
 
 Anmerkungen zum Code
 
@@ -148,6 +151,8 @@ Szene zum Starten
 Man muss sicherstellen, dass die SampleScene, die den CountdownController enthält, als Startszene in den Build-Einstellungen von Unity ausgewählt ist.
 
 
+
+
 Nutzung von Makey Makey
 
 Um Makey Makey zu verwenden, muss man die Klemmen an den entsprechenden Flächen für die einzelnen Tasten anbringen:
@@ -157,20 +162,33 @@ Um Makey Makey zu verwenden, muss man die Klemmen an den entsprechenden Flächen
     Obere Pfeiltaste für "FizzBuzz"
     Untere Pfeiltaste für "nicht teilbar"
 
-    Das Graue Kabel dass unten als Erdung angebracht ist nimmt man in die hand, wenn man nun z.B. das Kabel in die andere Hand nimmt das an der Fläche für fizz angebracht ist sollte im Spiel der Befehl Fizz ausgeführt werden.
+Das Graue Kabel dass unten als Erdung angebracht ist nimmt man in die hand, wenn man nun z.B. das Kabel in die andere Hand nimmt das an der Fläche für fizz angebracht ist sollte im Spiel der Befehl Fizz ausgeführt werden.
 
 Mit dieser Beschreibung sollte das Makey Makey nun funktionieren.
+
+
+
+
+Zusammenfassung Fragebogen:
+
+Drei Anfänger haben das FizzBuzz-Spiel getestet: ein 47-Jähriger, eine 15-Jährige und eine 17-Jährige. Alle fanden die Benutzeroberfläche einfach zu bedienen und die Anweisungen hilfreich. Der 47-Jährige war sehr motiviert bei dem Spiel, die anderen zwei waren mittel-motiviert. Zwei der Befragten fanden das Spiel unterhaltsam, während eine Befragte es nur mittel unterhaltsam fand. Zwei Teilnehmer bewerteten das Spiel als intuitiv, und eine Teilnehmerin bewertete es als sehr intuitiv.
+
+Die 15-Jährige und die 17-Jährige fanden das Spiel nur mittel motivierend. Es gab keine Fehler, und das Feedback im Spiel war klar. Insgesamt waren alle zufrieden. Der 47-Jährige schlug vor, verschiedene Schwierigkeitslevel einzubauen.
+
+
+
 
 
 Fehlerbehebung
 
 Häufige Probleme
+
 1. Keine Audioausgabe
 
 Ich habe versucht, das Problem zu beheben, indem ich verschiedene Sachen ausprobierte. Zuerst habe ich überprüft, ob die AudioSource-Komponente auf den richtigen Objekten liegt und die korrekten AudioClips zugewiesen sind. Ich habe auch kontrolliert ob die Lautstärke auf null gesetzt ist und im Script nachgesehen ob dort fehler vorhanden sind. Nachdem ich die AudioSource-Komponente im Unity-Editor neu hinzugefügt und die AudioClips neu zugewiesen habe, funktionierte die Audioausgabe wieder.
 
 2. Spiel reagiert nicht auf Eingaben
 
-Ich habe überprüft, ob die Variable canInput korrekt gesetzt ist. Danach habe ich die Tastenzuordnungen im Skript durchgesehen, um sicherzustellen, dass sie richtig implementiert sind.
+Ich habe überprüft, ob die Variable canInput richtig eingestellt ist. Danach habe ich die Tastenzuordnungen im Skript angeschaut, um sicherzugehen, dass sie richtig funktionieren.
 
 
